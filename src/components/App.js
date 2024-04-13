@@ -3,6 +3,7 @@ import Header from "./Header";
 import MainContainer from "./MainContainer";
 
 function App() {
+  
   return (
     <div>
       <Header />
@@ -12,3 +13,11 @@ function App() {
 }
 
 export default App;
+
+// App
+  // Header
+  // MainContainer
+    // SearchBar
+    // Portfolio Container
+    // StockContainer
+      // Stock

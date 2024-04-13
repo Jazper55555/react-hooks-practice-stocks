@@ -1,6 +1,26 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
-function SearchBar() {
+function SearchBar({nameSort, priceSort, filterStocks}) {
+  const [alphabetChecked, setAlphabetChecked] = useState(false)
+  const [priceChecked, setPriceChecked] = useState(false)
+
+  useEffect(() => {
+    nameSort(alphabetChecked)
+    priceSort(priceChecked)
+  }, [alphabetChecked, priceChecked])
+
+  function handleAlphabetCheck() {
+    setAlphabetChecked(!alphabetChecked)
+  }
+
+  function handlePriceCheck() {
+    setPriceChecked(!priceChecked)
+  }
+
+  function handleFilter(e) {
+    filterStocks(e.target.value)
+  }
+
   return (
     <div>
       <strong>Sort by:</strong>
@@ -9,8 +29,9 @@ function SearchBar() {
           type="radio"
           value="Alphabetically"
           name="sort"
-          checked={null}
-          onChange={null}
+          checked={alphabetChecked}
+          onChange={handleAlphabetCheck}
+          onClick={handleAlphabetCheck}
         />
         Alphabetically
       </label>
@@ -19,15 +40,17 @@ function SearchBar() {
           type="radio"
           value="Price"
           name="sort"
-          checked={null}
-          onChange={null}
+          checked={priceChecked}
+          onChange={handlePriceCheck}
+          onClick={handlePriceCheck}
         />
         Price
       </label>
       <br />
       <label>
         <strong>Filter:</strong>
-        <select onChange={null}>
+        <select onChange={handleFilter}>
+          <option value="All">All</option>
           <option value="Tech">Tech</option>
           <option value="Sportswear">Sportswear</option>
           <option value="Finance">Finance</option>
@@ -38,3 +61,11 @@ function SearchBar() {
 }
 
 export default SearchBar;
+
+// App
+  // Header
+  // MainContainer
+    // SearchBar
+    // Portfolio Container
+    // StockContainer
+      // Stock
